@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transitions</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+          background-color: black;
+          color: white;
+        }
+      }
+
+      body {
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        animation: fadeIn 4s 3s both;
+      }
+
+      .container {
+        max-width: 800px;
+        margin-inline: auto;
+        margin-top: 5rem;
+      }
+
+      .container:not(.card-container) {
+        border: 1px solid black;
+      }
+
+      .rectangle {
+        width: 250px;
+        min-height: 60px;
+        background-color: aquamarine;
+        border: 1px solid black;
+        margin-bottom: 2px;
+      }
+
+      /* per animare con transition andremo sempre a gestire uno STATO A e uno STATO B del nostro elemento */
+      /* la modalità più comune per abilitare uno STATO B è quella di un :hover, ma non è l'unica */
+      /* al browser interessa solo sapere quando una proprietà è cambiata, il come cambi non ha importanza */
+      .n1 {
+        /* transition-property: width;
+            transition-duration: 1s; */
+
+        transition: width 2s, background-color 500ms;
+      }
+
+      .n1:hover {
+        width: 500px;
+        background-color: palevioletred;
+      }
+
+      .n2 span {
+        display: inline-block;
+        /* position: relative;
+            left: 0px; */
+        translate: 0px;
+        transition: translate 1s, font-size 0.5s 0.5s;
+      }
+
+      .n2:hover span {
+        /* left: 240px; */
+        font-size: 1.5rem;
+        translate: 230px;
+      }
+
+      .n3 {
+        height: 60px;
+        transition: all 3s;
+      }
+
+      .n3:hover {
+        height: 300px;
+        color: red;
+        border: 2px solid red;
+
+        transition: all 1s;
+        transition-delay: 0.1s;
+      }
+
+      .changeColor {
+        background-color: red;
+      }
+
+      .card {
+        max-width: 300px;
+        margin-inline: auto;
+      }
+
+      .card :where(h3, p) {
+        margin: 0;
+      }
+
+      .card .img-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card .img-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        background-color: rgb(0 0 0 / 36%);
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        transition: opacity 300ms 100ms;
+      }
+
+      .card img {
+        border-radius: 4px;
+
+        max-width: 100%;
+        display: block;
+      }
+
+      .card-body {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border: 1px solid black;
+        border-top: none;
+        padding: 0.5rem;
+        opacity: 0;
+        transition: opacity 200ms 600ms;
+      }
+
+      .card-body > * {
+        opacity: 0;
+        transition: opacity 300ms;
+      }
+
+      .card-body p:first-of-type {
+        transition-delay: 200ms;
+      }
+
+      .card-body p:nth-of-type(2) {
+        transition-delay: 300ms;
+      }
+
+      .card-body p:nth-of-type(3) {
+        transition-delay: 400ms;
+      }
+
+      .card-body button {
+        transition-delay: 500ms;
+      }
+
+      .card h2 {
+        position: absolute;
+        bottom: -6.3px;
+        margin: 0;
+        color: rgb(255, 255, 255);
+        font-size: 3rem;
+        letter-spacing: -3px;
+        opacity: 0;
+        translate: -160px;
+
+        transition: translate 0.5s cubic-bezier(0.28, -0.27, 0.67, 1.24),
+          opacity 1s;
+      }
+
+      .card-body h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .card-body p {
+        font-size: 0.85rem;
+        letter-spacing: 0.3px;
+        color: #676767;
+        line-height: 1.5;
+      }
+
+      .card-body button {
+        margin-top: 0.5rem;
+        background-color: black;
+        color: white;
+        border: 1px solid transparent;
+        width: 100%;
+        padding-block: 0.25rem;
+        border-radius: 4px;
+      }
+
+      .card:hover .img-wrapper::before {
+        opacity: 1;
+      }
+
+      .card:hover img {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      .card:hover .card-body {
+        opacity: 1;
+        transition-delay: 0ms;
+      }
+
+      .card:hover .card-body > * {
+        opacity: 1;
+      }
+
+      .card:hover h2 {
+        translate: 0px;
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Transitions</h2>
+      <div class="rectangle n1">1</div>
+      <div class="rectangle n2"><span>2</span></div>
+      <div class="rectangle n3">3</div>
+    </div>
+
+    <div class="container card-container">
+      <div class="card">
+        <div class="img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="forest"
+          />
+          <h2>Hiking</h2>
+        </div>
+        <div class="card-body">
+          <h3>Forest</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Recusandae eaque corrupti voluptas officia!</p>
+          <p>
+            Ullam deleniti debitis temporibus magnam, quae necessitatibus aut
+            doloremque fugit atque hic dolore aliquid corporis rem dolorem?
+          </p>
+          <button>Scopri di più</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = () => {
+        const n3 = document.querySelector(".n3");
+
+        setTimeout(() => {
+          n3.classList.add("changeColor");
+        }, 1500);
+      };
+    </script>
+  </body>
+</html>

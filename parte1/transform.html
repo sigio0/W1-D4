@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transforms</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .container {
+        max-width: 800px;
+        margin-inline: auto;
+        border: 1px solid black;
+        margin-top: 5rem;
+      }
+
+      .rectangle {
+        width: 250px;
+        min-height: 60px;
+        background-color: aquamarine;
+        border: 1px solid black;
+        margin-bottom: 2px;
+      }
+
+      /* translate(x, y) */
+      /* .n1 {
+            transform: translate(30px, 20px)
+        } */
+      .n1 {
+        /* translate(x, y) */
+        /* proprietà translate usata singolarmente */
+        translate: 30px 20px;
+      }
+
+      .n2 {
+        transform: translateX(-20px);
+      }
+
+      .n3 {
+        transform: translateY(-10px);
+      }
+
+      /* .n4 {
+            transform: rotate(-15deg)
+        } */
+      .n4 {
+        rotate: -15deg;
+      }
+
+      /* .n5 {
+            transform: rotateX(45deg)
+        } */
+      .n5 {
+        rotate: x 45deg;
+      }
+
+      .n6 {
+        transform: rotateY(45deg);
+      }
+
+      .n7 {
+        transform: skew(30deg);
+        /* è uguale ad uno skewX */
+      }
+
+      .n8 {
+        transform: skewY(5deg);
+      }
+
+      .n9 {
+        transform: scale(1.2);
+      }
+
+      .n10 {
+        transform: scaleX(1.6);
+      }
+
+      .n11 {
+        transform: scaleY(1.6);
+      }
+
+      .n12 {
+        transform: perspective(1000px) translateZ(100px);
+      }
+
+      .n13 {
+        transform: perspective(1000px) rotate3d(1, 1, 1, 245deg);
+      }
+
+      .n14 {
+        /* transform: perspective(1000px) rotate3d(0, 1, 0, 77deg) scale3d(1, 1, 2.5); */
+        transform: perspective(1000px) rotate3d(0, 1, 0, 77deg)
+          translate3d(0, 0, 100px);
+        transform-style: preserve-3d;
+      }
+
+      .n14 > div:first-of-type {
+        background-color: cornflowerblue;
+        transform: perspective(1000px) rotate3d(0, 1, 0, 35deg);
+      }
+
+      .n14 > div:nth-of-type(2) {
+        background-color: chocolate;
+        transform: perspective(1000px) rotate3d(0, 1, 0, 115deg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Translate</h2>
+      <div class="rectangle n1">x e y</div>
+      <div class="rectangle n2">x</div>
+      <div class="rectangle n3">y</div>
+
+      <h2>Rotate</h2>
+      <div class="rectangle n4">x e y</div>
+      <div class="rectangle n5">x</div>
+      <div class="rectangle n6">y</div>
+
+      <h2>Skew (distorsione)</h2>
+      <div class="rectangle n7">x e y</div>
+      <div class="rectangle n8">x</div>
+
+      <h2>Scale (ridimensionamento)</h2>
+      <div class="rectangle n9">x e y</div>
+      <div class="rectangle n10">x</div>
+      <div class="rectangle n11">y</div>
+
+      <h3>3D</h3>
+      <h2>TranslateZ</h2>
+      <div class="rectangle n12">z</div>
+
+      <h2>Rotate3d</h2>
+      <div class="rectangle n13">z</div>
+
+      <h2>Scale3d</h2>
+      <div class="rectangle n14">
+        z
+        <div>first child</div>
+        <div>second child</div>
+      </div>
+    </div>
+  </body>
+</html>
